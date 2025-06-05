@@ -167,6 +167,12 @@ class Gameboard {
 
             //and then set the field to already hit
             this.board[row][col] = 'shiphit';
+
+            //check for loser
+            if (this.checkLoser())
+            {
+                //we have lost, send a signal / call another function
+            }
         }
         else 
         {
@@ -182,7 +188,7 @@ class Gameboard {
 
     checkLoser()
     {
-        return allShipsGone();
+        return this.allShipsGone();
     }
 
     allShipsGone()
@@ -192,14 +198,14 @@ class Gameboard {
         {
             for (let t = 0; t<this.board.length; t++)
             {
-                if (board[i][j] instanceof ship)
+                if (this.board[i][t] instanceof ship)
                 {
                     return false;
                 }
             }
         
         }
-        return false;
+        return true;
     }
 }
 
