@@ -8,6 +8,31 @@ class Gameboard {
 
     }
 
+       createBoard() {
+        //return a 2d array..
+        //make a new board
+        let board = [];
+        for (let i = 0; i < 10; i++) {
+            //make a new row
+            board[i] = [];
+            for (let t = 0; t < 10; t++) {
+                //make a new column
+                board[i][t] = 0;
+
+
+
+
+
+            }
+
+
+        }
+
+
+        return board;
+
+    } 
+
     placeShip(ship, direction, rowstart, colstart) {
         //what is involved in placing a ship?
         //we can read its length
@@ -16,13 +41,27 @@ class Gameboard {
         //lets call a direction check
         //other params above
         //return the coordinates
-        let addShipCoords = this.getCoordinateList(direction, rowstart, colstart, length);
+        let ShipCoords = this.getCoordinateList(direction, rowstart, colstart, length);
 
+        //we can also add some logic for which ship is which players down the road here
+
+
+
+        //coordinates are correct, lets iterate over them
+
+        for (let i = 0; i<ShipCoords.length; i++)
+        {
+      
+                // we are now iterating over each individual array
+                //we have a [row,column format..]
+                let row = ShipCoords[i][0]
+                let column = ShipCoords[i][1]
+                this.board[row][column] = 'ship'
+            
+        }
+
+         return this.board;
         
-        //now we can 'place'
-        return addShipCoords;
-
-
     }
 
     getCoordinateList(direction, rowstart, colstart,length) {
@@ -125,30 +164,7 @@ return coordinateList
            
         }
 
-    createBoard() {
-        //return a 2d array..
-        //make a new board
-        let board = [];
-        for (let i = 0; i < 10; i++) {
-            //make a new row
-            board[i] = [];
-            for (let t = 0; t < 10; t++) {
-                //make a new column
-                board[i][t] = 0;
 
-
-
-
-
-            }
-
-
-        }
-
-
-        return board;
-
-    }
 }
 
 //let board = new Gameboard;
