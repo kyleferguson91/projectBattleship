@@ -10,6 +10,7 @@ constructor(length)
 
 }
 
+
  hit()
 {
     //if the ship is hit, we want to call the hit function on it..
@@ -20,18 +21,18 @@ constructor(length)
     
     console.log("has been hit, calulating now")
     //now call is sunk to check for sunk status
-    if (isSunk())
+    if (this.isSunk())
     {
         this.sunk = true;
     }
 
 }
+
 isSunk()
 {
         console.log("checking for is sunk", this.isHit, this.sunk, this.length)
 return this.length <= 0;
 }
-
 
 
 }
