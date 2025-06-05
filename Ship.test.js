@@ -1,3 +1,4 @@
+
 const Ship = require('./Ship');
 
 test('Ship takes a hit and updates state correctly', () => {
