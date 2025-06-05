@@ -49,16 +49,26 @@ class Gameboard {
         //we use another function to check for valid placement once..
         if (direction == 'horizontal') {
             //return the coordinates, do not set them!
-            coordinateList.push([rowstart, colstart])
+           
 
-            colstart++
+            let counter = 0;
+            while (counter<length)
+            {
+                 coordinateList.push([rowstart, colstart+counter])
+                counter++
+            }
             
         }
         else {
             //vertical
             //row+1 col <9>0
-             coordinateList.push([rowstart, colstart])
-             rowstart++
+
+            let counter = 0;
+            while (counter<length)
+            {
+                 coordinateList.push([rowstart+counter, colstart])
+                counter++
+            }
 
         }
 

@@ -16,7 +16,7 @@ test('Game function', () => {
     
 
     //can we output a change of coords?
-    expect(board.placeShip(ship, "vertical",8,8)).toEqual(false);
+    expect(board.placeShip(ship, "horizontal",3,1)).toEqual(false);
 
 
 }
