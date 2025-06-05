@@ -18,8 +18,10 @@ test('Game function', () => {
     //can we output a change of coords?
 board.placeShip(ship, "horizontal", 3, 1)
 
-expect(board.board[3][1]).toEqual('ship');
-expect(board.board[3][2]).toEqual('ship');
-expect(board.board[3][3]).toEqual('ship');
+expect(board.board[3][1]).toEqual(ship);
+board.attack(3,1);
+expect(board.board[3][1]).toEqual('shiphit');
+expect(board.board[3][2]).toEqual(ship);
+expect(board.board[3][3]).toEqual(ship);
 
 })

@@ -1,3 +1,4 @@
+const ship = require('./Ship.js')
 class Gameboard {
     //class should create a board
 
@@ -156,24 +157,18 @@ class Gameboard {
 
     attack(row, col)
     {
-                if (this.board[row][col] == 'shiphit')
-        {
-                //do nothing because the ship has already been hit..
-                //we could call a dom update here to affect the square 
-                //or say already clicked
-        }
-        if (this.board[row][col] == ship)
-        {
-            //call ship.hit
-            ship.hit();
 
+        if (this.board[row][col] instanceof ship)
+        {
+            //call ship.hit (the cell is an instance of ship itself so call within the call)
+            this.board[row][col].hit()
             //should we handle hit with the dom?
 
 
             //and then set the field to already hit
             this.board[row][col] = 'shiphit';
         }
-        else if (this.board[row][col] != ship)
+        else 
         {
             //record the missed attack!
             this.missedAttacks.push([row,col])
@@ -183,6 +178,28 @@ class Gameboard {
         {
 
         }
+    }
+
+    checkLoser()
+    {
+        return allShipsGone();
+    }
+
+    allShipsGone()
+    {
+        //iterate over the gameboard
+        for (let i = 0; i<this.board.length; i++)
+        {
+            for (let t = 0; t<this.board.length; t++)
+            {
+                if (board[i][j] instanceof ship)
+                {
+                    return false;
+                }
+            }
+        
+        }
+        return false;
     }
 }
 
