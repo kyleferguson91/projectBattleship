@@ -1,10 +1,11 @@
 class Ship
 {
-constructor(length, isHit, isSunk)
+  
+constructor(length)
 {
     this.length = length;
-    this.isHit = isHit;
-    this.isSunk = isSunk;
+    this.isHit = 0;
+    this.sunk = false;
 
 
 }
@@ -16,12 +17,23 @@ constructor(length, isHit, isSunk)
     this.length = this.length -1;
     //increate the number of hits
     this.isHit = this.isHit + 1;
-    if (this.hit >= this.length)
+    
+    console.log("has been hit, calulating now")
+    //now call is sunk to check for sunk status
+    if (isSunk())
     {
-        this.isSunk = true;
+        this.sunk = true;
     }
+
+}
+isSunk()
+{
+        console.log("checking for is sunk", this.isHit, this.sunk, this.length)
+return this.length <= 0;
 }
 
 
 
 }
+
+module.exports = Ship;

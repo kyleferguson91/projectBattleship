@@ -1,0 +1,20 @@
+{
+  "name": "project-battleship",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Ship.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyleferguson91/projectBattleship.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyleferguson91/projectBattleship/issues"
+  },
+  "homepage": "https://github.com/kyleferguson91/projectBattleship#readme"
+}
