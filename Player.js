@@ -8,8 +8,7 @@ class Player{
         this.playerType = type
     }
 
-//when we create a player, we should also create a gameboard..
-
+    
 }
 
 
