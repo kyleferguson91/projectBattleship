@@ -1,5 +1,5 @@
-const Player = require('./Player');
-const Gameboard = require('./Gameboard');
+const Player = require('../src/Player.js');
+const Gameboard = require('../src/Gameboard.js');
 
 describe('Player class', () => {
   

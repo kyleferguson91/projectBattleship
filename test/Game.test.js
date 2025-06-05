@@ -1,5 +1,5 @@
-const Ship = require('./Ship.js');
-const Gameboard = require('./Gameboard.js')
+const Ship = require('../src/Ship.js');
+const Gameboard = require('../src/Gameboard.js')
 
 
 

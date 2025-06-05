@@ -1,4 +1,4 @@
-const Gameboard = require('./Gameboard.js')
+const Gameboard = require('../src/Gameboard.js')
 
 
 test('Ship takes a hit and updates state correctly', () => {

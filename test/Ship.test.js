@@ -1,4 +1,4 @@
-const Ship = require('./Ship');
+const Ship = require('../src/Ship.js');
 
 test('Ship takes a hit and updates state correctly', () => {
   const ship = new Ship(3);
