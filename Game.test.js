@@ -12,9 +12,11 @@ test('Game function', () => {
     //noww a board
     const board = new Gameboard();
 
-    expect(board.placeShip(ship, "horizontal",0,0)).toBe(2);
-   
 
+    
+
+    //can we output a change of coords?
+    expect(board.placeShip(ship, "vertical",8,8)).toEqual(false);
 
 
 }
