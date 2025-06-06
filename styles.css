@@ -1,3 +1,4 @@
+/* Base reset and body */
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +9,7 @@ body, html {
   height: 100%;
   font-family: Arial, sans-serif;
   background-color: #0a3d62;
-  color: #f0f0f0;
+  color: #e0e6f0;
 }
 
 .mainlayout {
@@ -28,104 +29,134 @@ body, html {
 .header h1 {
   font-size: 2rem;
   letter-spacing: 1px;
-  color: #d1e7ff;
-  text-shadow: 0 0 5px #4169e1;
 }
 
-/* Container for each board + its info pane */
-.board-container {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Info panes */
-.infopane1, .infopane2 {
-  background-color: #174ea6;
-  border-radius: 8px;
-  padding: 1rem;
-  width: 120px;
-  height: 200px;
-  color: #cfd9ff;
-  font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: 0 0 8px rgba(23, 78, 166, 0.6);
-  user-select: none;
-  text-align: center;
-}
-
-/* Boards */
-.board1, .board2 {
-  width: 350px;
-  height: 350px;
-  background-color: #1a5adb;
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  gap: 2px;
-  border: 2px solid #d1e7ff;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #335ecf88;
-  overflow: hidden;
-}
-
-/* Cells */
-.cell {
-  background-color: #e8f0ff;
-  border: 1px solid #b0c4ff;
-  transition: background-color 0.3s;
-}
-
-.cell:hover {
-  background-color: #b0c4ff;
-  cursor: pointer;
-}
-
-.footer {
-  font-size: 0.9rem;
-  color: #aabbff;
-}
-
-/* Gameholder flex container */
+/* Gameholder layout - flex container */
 .gameholder {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-/* MOBILE RESPONSIVE - stack info panes above boards */
+/* Info panes style */
+.infopane1, .infopane2 {
+  background-color: #144a91;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  width: 160px;
+  min-width: 140px;
+  color: #d1d9e6;
+  font-size: 0.9rem;
+  box-shadow: 0 0 8px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  user-select: none;
+  flex-shrink: 0;
+}
 
-@media (max-width: 800px) {
+/* Player nameplate */
+.infopane1 p:first-child, .infopane2 p:first-child {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #f0f8ff;
+  text-align: center;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #2a68b9;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.6rem;
+}
 
+/* Rotation button */
+.infopane1 button, .infopane2 button {
+  background-color: #2a68b9;
+  border: none;
+  border-radius: 4px;
+  color: #f0f8ff;
+  padding: 0.35rem 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  width: 70px;
+}
+
+.infopane1 button:hover, .infopane2 button:hover {
+  background-color: #3c83e1;
+}
+
+/* Your Turn text styling */
+.infopane1 p.your-turn, .infopane2 p.your-turn {
+  text-align: center;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #4169e1; /* default subtle blue */
+  opacity: 0.6;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  user-select: none;
+}
+
+/* Active turn highlight */
+.infopane1.active p.your-turn, 
+.infopane2.active p.your-turn {
+  background-color: #ffd700; /* gold highlight */
+  color: #0a3d62;
+  opacity: 1;
+}
+
+/* Boards remain unchanged, small tweak for consistent sizing */
+.board1, .board2 {
+  width: min(90vw, 320px);
+  height: min(90vw, 320px);
+  background-color: #1e90ff;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2px;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Grid cells */
+.cell {
+  background-color: #f0f8ff;
+  border: 1px solid #cceeff;
+  transition: background-color 0.3s;
+}
+
+.cell:hover {
+  background-color: #b0e0e6;
+  cursor: pointer;
+}
+
+/* Responsive layout */
+@media (max-width: 720px) {
   .gameholder {
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
   }
-
-  .board-container {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
   .infopane1, .infopane2 {
     width: 90vw;
-    max-width: 350px;
-    height: 100px;
-    margin: 0 auto;
+    max-width: 320px;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1rem;
   }
-
-  .header
-  {
-    display: none;
+  .infopane1 p:first-child, .infopane2 p:first-child {
+    border: none;
+    margin-bottom: 0;
   }
-
-  .board1, .board2 {
-    width: 90vw;
-    height: 90vw;
-    max-width: 350px;
-    max-height: 350px;
+  .infopane1 button, .infopane2 button {
+    width: 80px;
   }
+}
+.center
+{
+    text-align: center;
 }
