@@ -1,5 +1,5 @@
 
-import ship from './Ship.js';
+import Ship from './Ship.js';
 export default class Gameboard {
     //class should create a board
 
@@ -20,7 +20,10 @@ export default class Gameboard {
             board[i] = [];
             for (let t = 0; t < 10; t++) {
                 //make a new column
-                board[i][t] = 0;
+                board[i][t] = {
+                    ship: null,
+                    status: 'no ship present'
+                };
 
 
 
@@ -58,7 +61,10 @@ export default class Gameboard {
             //we have a [row,column format..]
             let row = ShipCoords[i][0]
             let column = ShipCoords[i][1]
-            this.board[row][column] = ship
+            this.board[row][column] = {
+                ship: ship,
+                                        status: 'untouched'
+            }
 
         }
 
@@ -135,7 +141,7 @@ export default class Gameboard {
         if (direction == 'horizontal') {
             //ensure every cell in colstart+lenth is not occupied for horizontal ships
             for (let i = 0; i < length; i++) {
-                if (this.board[rowstart][colstart + i] == 'ship') {
+                if (this.board[rowstart][colstart + i].ship instanceof Ship) {
                     return false;
                 }
             }
@@ -144,7 +150,7 @@ export default class Gameboard {
         else {
             //ensure every cell in row+lenth is not occupied for vertical ships
             for (let i = 0; i < length; i++) {
-                if (this.board[rowstart + i][colstart] == 'ship') {
+                if (this.board[rowstart + i][colstart].ship instanceof Ship) {
                     return false;
                 }
             }
@@ -160,10 +166,11 @@ export default class Gameboard {
     attack(row, col)
     {
 
-        if (this.board[row][col] instanceof ship)
+        if (this.board[row][col].ship instanceof ship)
         {
             //call ship.hit (the cell is an instance of ship itself so call within the call)
-            this.board[row][col].hit()
+            this.board[row][col].ship.hit()
+            this.board[row][col].status = 'hit'
             //should we handle hit with the dom?
 
 
@@ -179,7 +186,7 @@ export default class Gameboard {
         {
             //record the missed attack!
            
-            this.board[row][col] = 'missed'
+            this.board[row][col].status = 'miss'
             //we could look to call dom logic here?
         }
         {

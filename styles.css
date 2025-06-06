@@ -80,7 +80,7 @@ body, html {
   font-weight: 600;
   transition: background-color 0.3s ease;
   align-self: center;
-  width: 70px;
+  width: max-content;
 }
 
 .infopane1 button:hover, .infopane2 button:hover {
@@ -146,7 +146,7 @@ body, html {
 }
 
 /* Hit shot */
-.cell.hit {
+.cell.hit .cellcomputer.hit  {
   background-color: #ffd700; /* Gold for hit */
   border-color: #bfa600;
   cursor: default;
@@ -184,7 +184,7 @@ body, html {
     margin-bottom: 0;
   }
   .infopane1 button, .infopane2 button {
-    width: 80px;
+    width: min-content;
   }
 }
 .center
