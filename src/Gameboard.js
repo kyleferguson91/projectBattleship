@@ -1,11 +1,13 @@
-const ship = require('./Ship.js')
-class Gameboard {
+
+import ship from './Ship.js';
+export default class Gameboard {
     //class should create a board
 
     constructor() {
 
         this.board = this.createBoard()
-        this.missedAttacks = []
+    
+
 
     }
 
@@ -176,8 +178,8 @@ class Gameboard {
         else 
         {
             //record the missed attack!
-            this.missedAttacks.push([row,col])
-
+           
+            this.board[row][col] = 'missed'
             //we could look to call dom logic here?
         }
         {
@@ -207,7 +209,3 @@ class Gameboard {
         return true;
     }
 }
-
-//let board = new Gameboard;
-//console.table(board.board)
-module.exports = Gameboard;

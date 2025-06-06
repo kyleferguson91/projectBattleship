@@ -122,19 +122,50 @@ body, html {
   overflow: hidden;
   flex-shrink: 0;
 }
-
-/* Grid cells */
+/* Default cell */
 .cell {
   background-color: #f0f8ff;
   border: 1px solid #cceeff;
   transition: background-color 0.3s;
 }
-
+.cellcomputer {
+  background-color: #f0f8ff;
+  border: 1px solid #cceeff;
+  transition: background-color 0.3s;
+}
 .cell:hover {
   background-color: #b0e0e6;
   cursor: pointer;
 }
 
+/* Missed shot */
+.cell.miss, .cellcomputer.miss  {
+  background-color: #1e3a5f; /* Darker blue, muted */
+  border-color: #274b7d;
+  cursor: default;
+}
+
+/* Hit shot */
+.cell.hit {
+  background-color: #ffd700; /* Gold for hit */
+  border-color: #bfa600;
+  cursor: default;
+  color: #0a3d62; /* Dark text if you have text */
+}
+
+/* Valid ship placement */
+.cell.valid-placement {
+  background-color: #3c83e1; /* Bright blue highlight */
+  border-color: #2a68b9;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.cell.valid-placement:hover {
+  background-color: #5aa0ff;
+  opacity: 1;
+}
 /* Responsive layout */
 @media (max-width: 720px) {
   .gameholder {
@@ -158,5 +189,80 @@ body, html {
 }
 .center
 {
-    text-align: center;
+    text-align: center ;
+}
+
+/* Button container - flex with spacing */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Base button styles - match your color palette */
+.button-container .btn {
+  background-color: #2a68b9;
+  color: #f0f8ff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+  user-select: none;
+  min-width: 110px;
+  text-align: center;
+}
+
+/* Hover effect */
+.button-container .btn:hover {
+  background-color: #3c83e1;
+}
+
+/* Different colors per button for clarity */
+.start-btn {
+  background-color: #28a745; /* green */
+}
+
+.start-btn:hover {
+  background-color: #218838;
+}
+
+.reset-btn {
+  background-color: #dc3545; /* red */
+}
+
+.reset-btn:hover {
+  background-color: #b02a37;
+}
+
+.help-btn {
+  background-color: #17a2b8; /* teal */
+}
+
+.help-btn:hover {
+  background-color: #117a8b;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 480px) {
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .button-container .btn {
+    width: 80%;
+    min-width: unset;
+    margin-bottom: 0.75rem;
+  }
+}
+
+
+.hidden
+{
+    display: flow-root;
 }

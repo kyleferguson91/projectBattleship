@@ -1,12 +1,13 @@
-class Ship
+export const shipFleet = [5, 4, 3, 3, 2];
+export default class Ship
 {
-  
+
 constructor(length)
 {
     this.length = length;
     this.isHit = 0;
     this.sunk = false;
-
+   
 
 }
 
@@ -37,4 +38,3 @@ return this.length <= 0;
 
 }
 
-module.exports = Ship;
