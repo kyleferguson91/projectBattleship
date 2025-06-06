@@ -165,9 +165,8 @@ class Gameboard {
             //should we handle hit with the dom?
 
 
-            //and then set the field to already hit
-            this.board[row][col] = 'shiphit';
-
+            console.log("we have a hit!")
+            
             //check for loser
             if (this.checkLoser())
             {
