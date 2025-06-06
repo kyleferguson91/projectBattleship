@@ -1,14 +1,131 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.mainlayout 
-{
-      background-color: #0a3d62; /* deep navy */
-  color: #ffffff;
-    width: 100vw;
-    height: 100vh;
-    border: 2px solid black;
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #0a3d62;
+  color: #f0f0f0;
+}
+
+.mainlayout {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.header, .footer {
+  text-align: center;
+  padding: 1rem;
+}
+
+.header h1 {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  color: #d1e7ff;
+  text-shadow: 0 0 5px #4169e1;
+}
+
+/* Container for each board + its info pane */
+.board-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Info panes */
+.infopane1, .infopane2 {
+  background-color: #174ea6;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 120px;
+  height: 200px;
+  color: #cfd9ff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: 0 0 8px rgba(23, 78, 166, 0.6);
+  user-select: none;
+  text-align: center;
+}
+
+/* Boards */
+.board1, .board2 {
+  width: 350px;
+  height: 350px;
+  background-color: #1a5adb;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  gap: 2px;
+  border: 2px solid #d1e7ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #335ecf88;
+  overflow: hidden;
+}
+
+/* Cells */
+.cell {
+  background-color: #e8f0ff;
+  border: 1px solid #b0c4ff;
+  transition: background-color 0.3s;
+}
+
+.cell:hover {
+  background-color: #b0c4ff;
+  cursor: pointer;
+}
+
+.footer {
+  font-size: 0.9rem;
+  color: #aabbff;
+}
+
+/* Gameholder flex container */
+.gameholder {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* MOBILE RESPONSIVE - stack info panes above boards */
+
+@media (max-width: 800px) {
+
+  .gameholder {
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .board-container {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .infopane1, .infopane2 {
+    width: 90vw;
+    max-width: 350px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .header
+  {
+    display: none;
+  }
+
+  .board1, .board2 {
+    width: 90vw;
+    height: 90vw;
+    max-width: 350px;
+    max-height: 350px;
+  }
 }
