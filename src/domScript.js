@@ -27,25 +27,16 @@ function startGameLogic(player,computer) {
         started = true;
         //create the cells to populate the board()
         createCells()
-        //from here we can call renderGameBoards(player1, computer)
-       
-        renderGameBoards(player, computer)
-
-        
-
-        //now we look into the player placing their ships..
-
- 
-        placeShips(computer)
-        //update the game again
-
-        console.log(computer.gameboard)
-        
-   renderGameBoards(player, computer)
+      //place comptuer ships
+         placecomputerShips(computer)
+        //render board for debug..
+         renderGameBoards(player, computer)
         //add events to our player cells!
-           addCellEvents()
+      addCellEvents()
+    orientationButtonLogic()
 
-         orientationButtonLogic()
+
+    //now here we should call onto a function to begin placing the players ships on the players board!
     
     }
 
@@ -167,8 +158,10 @@ function renderSingleBoard(board, domcells) {
             let domcell = domcells[row*10+col]
             if (board[row][col].ship instanceof Ship && board[row][col].status == 'untouched')
             {
-            
-                domcell.classList.add('valid-placement')
+              //  console.log(domcell)
+             //   console.log('marking dom cell red')
+                domcell.innerHTML = "s"
+                domcell.classList.add('red')
             }
             if (board[row][col].status == "hit")
             {
@@ -220,11 +213,10 @@ function createPlayer(type) {
     return player;
 }
 
-function placeShips(player) {
-
-if (player.playerType == "computer")
+function placecomputerShips(computer)
 {
-    console.log('docomputership placement!')
+ 
+ //   console.log('docomputership placement!')
 
     let i = 0;
     let direction = "horizontal";
@@ -238,36 +230,82 @@ if (player.playerType == "computer")
         //we need to not skip when we dont have a true
 
         
-              console.log("ship placed at ", rowstart, " ", colstart, " ", "direction is ", direction, " ", "length is ", ship.length)
-        player.gameboard.placeShip(ship, direction, rowstart, colstart) == false
+       
+       let valid = computer.gameboard.placeShip(ship, direction, rowstart, colstart)
+      
+       if (valid)
+       {
+       //   console.log("ship placed at ", rowstart, " ", colstart, " ", "direction is ", direction, " ", "length is ", ship.length)
+       }
+       else {
+     //   console.log('could not place', rowstart,colstart,ship.length, direction)
+        //try again
+                while(!valid)
+        {
+               rowstart = Math.floor(Math.random() * 10);
+         colstart = Math.floor(Math.random() * 10);
+            valid = computer.gameboard.placeShip(ship, direction, rowstart, colstart)
+            if (valid)
+            {
+               //  console.log("ship placed at ", rowstart, " ", colstart, " ", "direction is ", direction, " ", "length is ", ship.length)
+            }
+            
+        }
+       }
         direction = "horizontal" ? "vertical" : "horizontal"
         i++
     }
 
 
+
 }
-if (player.playerType == "human")
-{
-        let i = 0
-    while (i < shipnumber) {
-        //create a ship of given lenght
-        let ship = new Ship(shipFleet[i])
+
+function placeShips(player) {
+
+
+
+    let i = 0;
+    let direction = document.querySelector(".directiontoggle")
+    direciton = direction.innerText.toLowerCase();
+  
+    while(i<shipnumber)
+    {
+       
+        let ship = new Ship(shipFleet[i]);
+  
 
         
-        //place the ship, we need to check that it is also being placed at valid coordinates!
-        //when going to place the current ship we should show a hover
-
-        //a couple things..
-        updateShipInfo(shipFleet[i])
-        
-
-        //increment for next ship
-        i++;
+        //check if direction has been updated before next select
+        direction = direction.innerText.toLowerCase()
+       let valid = computer.gameboard.placeShip(ship, direction, rowstart, colstart)
+      
+       if (valid)
+       {
+          console.log("ship placed at ", rowstart, " ", colstart, " ", "direction is ", direction, " ", "length is ", ship.length)
+       }
+       else {
+        console.log('could not place', rowstart,colstart,ship.length, direction)
+        //try again
+                while(!valid)
+        {
+            //need a new rowstart and colstart or change of direction!
+            valid = computer.gameboard.placeShip(ship, direction, rowstart, colstart)
+            if (valid)
+            {
+                 console.log("ship placed at ", rowstart, " ", colstart, " ", "direction is ", direction, " ", "length is ", ship.length)
+            }
+            
+        }
+       }
+     
+        i++
     }
+
+
 
         updateShipInfo(0)
 
-}
+
 
 
 

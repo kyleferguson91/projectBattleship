@@ -48,7 +48,10 @@ export default class Gameboard {
         //other params above
         //return the coordinates
         let ShipCoords = this.getCoordinateList(direction, rowstart, colstart, length);
-
+        if (!ShipCoords)
+        {
+            return ShipCoords;
+        }
         //we can also add some logic for which ship is which players down the road here
 
 
@@ -61,9 +64,10 @@ export default class Gameboard {
             //we have a [row,column format..]
             let row = ShipCoords[i][0]
             let column = ShipCoords[i][1]
+               // console.log('placing ship at',rowstart,colstart, direction,length)
             this.board[row][column] = {
                 ship: ship,
-                                        status: 'untouched'
+                status: 'untouched'
             }
 
         }
@@ -122,6 +126,7 @@ export default class Gameboard {
 
     checkValidCoordinate(direction, rowstart, colstart, length) {
         //we are either checking vertial or horizontal
+            
         if (direction == 'horizontal') {
 
 
@@ -138,6 +143,7 @@ export default class Gameboard {
     }
 
     checkCollision(direction, rowstart, colstart, length) {
+
         if (direction == 'horizontal') {
             //ensure every cell in colstart+lenth is not occupied for horizontal ships
             for (let i = 0; i < length; i++) {

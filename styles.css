@@ -152,9 +152,13 @@ body, html {
   cursor: default;
   color: #0a3d62; /* Dark text if you have text */
 }
+.red
+{
+    background-color: red;
+}
 
 /* Valid ship placement */
-.cell.valid-placement {
+.cell.valid-placement .cellcomputer.valid-placement{
   background-color: #3c83e1; /* Bright blue highlight */
   border-color: #2a68b9;
   cursor: pointer;
